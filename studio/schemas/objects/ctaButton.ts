@@ -1,12 +1,9 @@
 export default {
-  title: 'Call to action',
-  name: 'cta',
+  title: 'Call to action Button',
+  name: 'ctaButton',
   type: 'object',
-  validation: Rule =>
-    Rule.custom(
-      (fields = {}) =>
-        !fields.route || !fields.link || 'Only one link type is allowed'
-    ),
+  validation: (Rule) =>
+    Rule.custom((fields = {}) => !fields.route || !fields.link || 'Only one link type is allowed'),
   fieldsets: [
     {
       title: 'Link',
@@ -15,9 +12,14 @@ export default {
   ],
   fields: [
     {
-      title: 'Title',
-      name: 'title',
+      title: 'Text',
+      name: 'text',
       type: 'string',
+    },
+    {
+      name: 'buttonColor',
+      title: 'Button Color',
+      type: 'color',
     },
     {
       title: 'Internal link',
@@ -42,11 +44,7 @@ export default {
       link: 'link',
     },
     prepare({ title, routeTitle = '', slug, link }) {
-      const subtitleExtra = slug
-        ? `Slug:/${slug}/`
-        : link
-        ? `External link: ${link}`
-        : 'Not set';
+      const subtitleExtra = slug ? `Slug:/${slug}/` : link ? `External link: ${link}` : 'Not set';
       return {
         title: `${title}`,
         subtitle: `${routeTitle} ${subtitleExtra}`,

@@ -22,13 +22,13 @@ export default {
       },
     },
     {
-      name: 'ctas',
+      name: 'ctaButtons',
       type: 'array',
-      title: 'Call to actions',
+      title: 'Call to action Buttons',
       of: [
         {
-          title: 'Call to action',
-          type: 'cta',
+          title: 'Call to action Button',
+          type: 'ctaButton',
         },
       ],
     },

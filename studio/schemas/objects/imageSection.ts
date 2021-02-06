@@ -24,9 +24,9 @@ export default {
       title: 'Image',
     },
     {
-      name: 'cta',
-      type: 'cta',
-      title: 'Call to action',
+      name: 'ctaButton',
+      type: 'ctaButton',
+      title: 'Call to action Button',
     },
   ],
   preview: {
