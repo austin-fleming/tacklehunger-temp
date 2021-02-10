@@ -19,5 +19,6 @@
   "yaml.format.enable": true,
   "yaml.format.singleQuote": true,
   "yaml.hover": true,
-  "yaml.validate": true
+  "yaml.validate": true,
+  "cSpell.words": ["lastmod", "serializers", "souper"]
 }

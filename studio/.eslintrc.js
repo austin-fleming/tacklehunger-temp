@@ -148,7 +148,7 @@ module.exports = {
       files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: ['./tsconfig.eslint.json'],
+        project: ['./tsconfig.json'],
         tsconfigRootDir: __dirname,
       },
       plugins: ['@typescript-eslint', 'jsx-a11y', 'sort-keys-fix'],

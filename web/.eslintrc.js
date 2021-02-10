@@ -1,4 +1,4 @@
-const restrictedImports = require('./.eslint-restricted-imports');
+// const restrictedImports = require('./.eslint-restricted-imports');
 
 const extendsCommonStart = [
   // Order is important here
@@ -63,22 +63,22 @@ const commonRuleOverrides = {
     },
   ],
   // Prevent certain items being imported and try to prevent relative paths to internals
-  'no-restricted-imports': [
-    'error',
-    {
-      paths: restrictedImports,
-      patterns: [
-        '**/*/assets',
-        // '**/*/components',
-        '**/*/hooks',
-        '**/*/pages',
-        // '**/*/scenes',
-        '**/*/services',
-        '**/*/theme',
-        // '**/*/utils',
-      ],
-    },
-  ],
+  // 'no-restricted-imports': [
+  //   'error',
+  //   {
+  //     paths: restrictedImports,
+  //     patterns: [
+  //       '**/*/assets',
+  //       // '**/*/components',
+  //       '**/*/hooks',
+  //       '**/*/pages',
+  //       // '**/*/scenes',
+  //       '**/*/services',
+  //       '**/*/theme',
+  //       // '**/*/utils',
+  //     ],
+  //   },
+  // ],
   // Prefer arrow functions in callbacks
   'prefer-arrow-callback': 'error',
   // Enforce function components being defined as arrow functions
@@ -148,7 +148,7 @@ module.exports = {
       files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: ['./tsconfig.eslint.json'],
+        project: ['./tsconfig.json'],
         tsconfigRootDir: __dirname,
       },
       plugins: ['@typescript-eslint', 'jsx-a11y', 'sort-keys-fix'],

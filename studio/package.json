@@ -1,11 +1,12 @@
 {
   "private": true,
-  "name": "sanity-nextjs-landing-pages-studio",
+  "name": "sanity-tacklehunger.org-studio",
   "version": "1.0.10",
   "main": "package.json",
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
     "build": "sanity build",
+    "clean": "rm -rf .next out dist workers-site/worker workers-site/dist",
     "dev": "sanity start",
     "test": "sanity check"
   },
