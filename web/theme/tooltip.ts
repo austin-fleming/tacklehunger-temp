@@ -1,6 +1,6 @@
 import { alpha, ThemeOptions } from '@material-ui/core';
-import { defaultMuiTheme } from 'theme/default';
-import { toolTipTypography } from 'theme/typography';
+import { defaultMuiTheme } from './default';
+import { toolTipTypography } from './typography';
 
 const backgroundColor = alpha(defaultMuiTheme.palette.common.black, 0.8);
 

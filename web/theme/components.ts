@@ -1,7 +1,7 @@
 import { ThemeOptions } from '@material-ui/core';
-import { defaultMuiTheme } from 'theme/default';
 import { componentsBaseline } from './baseline';
 import { componentsButtons } from './buttons';
+import { defaultMuiTheme } from './default';
 import { componentsInputs } from './inputs';
 import { componentsLinks } from './links';
 import { colors } from './palette';

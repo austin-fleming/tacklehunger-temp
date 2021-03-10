@@ -28,20 +28,20 @@ const Layout: React.FC<{ config: any }> = ({ config, children }) => {
   );
 };
 
-Layout.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
-  config: PropTypes.shape({
-    footerNavigation: PropTypes.arrayOf(PropTypes.object),
-    footerText: PropTypes.arrayOf(PropTypes.object),
-    logo: PropTypes.shape({
-      asset: PropTypes.shape({
-        url: PropTypes.string,
-      }),
-    }),
-    mainNavigation: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string,
-    url: PropTypes.string,
-  }),
-};
+// Layout.propTypes = {
+//   children: PropTypes.arrayOf(PropTypes.node),
+//   config: PropTypes.shape({
+//     footerNavigation: PropTypes.arrayOf(PropTypes.object),
+//     footerText: PropTypes.arrayOf(PropTypes.object),
+//     logo: PropTypes.shape({
+//       asset: PropTypes.shape({
+//         url: PropTypes.string,
+//       }),
+//     }),
+//     mainNavigation: PropTypes.arrayOf(PropTypes.object),
+//     title: PropTypes.string,
+//     url: PropTypes.string,
+//   }),
+// };
 
 export default Layout;

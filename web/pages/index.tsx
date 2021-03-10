@@ -8,6 +8,4 @@ const IndexPage: React.FC<{ config: any }> = ({ config }) => (
   </Layout>
 );
 
-IndexPage.propTypes = {};
-
 export default IndexPage;

@@ -20,5 +20,14 @@
   "yaml.format.singleQuote": true,
   "yaml.hover": true,
   "yaml.validate": true,
-  "cSpell.words": ["lastmod", "serializers", "souper"]
+  "cSpell.words": [
+    "Mixins",
+    "Preval",
+    "codegen",
+    "fieldsets",
+    "lastmod",
+    "serializers",
+    "souper",
+    "transpilation"
+  ]
 }

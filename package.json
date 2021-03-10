@@ -1,26 +1,64 @@
 {
-  "private": true,
   "name": "sanity-marketing-tacklehunger.org",
+  "private": true,
   "version": "1.0.12",
+  "engines": {
+    "node": ">=0.14"
+  },
+  "workspaces": {
+    "packages": [
+      "studio",
+      "web"
+    ]
+  },
   "scripts": {
-    "build": "lerna run build --parallel",
-    "build-web": "lerna bootstrap && (cd web && yarn build)",
-    "build-studio": "lerna bootstrap && (cd studio && yarn build)",
+    "build": "concurrently \"yarn build:studio\" \"yarn build:web\"",
+    "build:studio": "cd studio && yarn build",
+    "build:web": "cd web && yarn build",
     "clean": "yarn clean:build && yarn clean:nm && yarn clean:npmlock",
     "clean:all": "yarn clean:build && yarn clean:nm && yarn clean:lock",
-    "clean:build": "lerna run clean --parallel",
+    "clean:build": "yarn workspaces run clean",
     "clean:lock": "find . -type f \\( -name *.lock -o -name *-lock.json \\) -delete",
     "clean:nm": "find . -type d -name \"node_modules\" -exec rm -rf \"{}\" +",
     "clean:npmlock": "find . -type f -name \"*-lock.json\" -delete",
-    "dev": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"yarn dev:studio\" \"yarn dev:web\"",
+    "dev:studio": "cd studio && yarn dev",
+    "dev:web": "cd web && yarn dev",
+    "format": "prettier-eslint --write . \"!.next/**\" \"!node_modules/**\" \"!out/**\"",
+    "lint": "eslint .",
+    "test": "concurrently \"yarn test:studio\" \"yarn test:web\"",
+    "test:studio": "cd studio && yarn test",
+    "test:web": "cd web && yarn test"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/eslint-parser": "^7.12.13",
+    "@babel/preset-typescript": "^7.12.13",
     "@sanity/cli": "^2.2.6",
-    "lerna": "^3.22.1"
+    "@types/node": "^14.14.25",
+    "@types/react": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-compat": "^3.9.0",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.1",
+    "eslint-plugin-typescript-sort-keys": "^1.5.0",
+    "prettier": "^2.2.1",
+    "prettier-eslint-cli": "^5.0.0",
+    "sanity-codegen": "^0.8.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
   }
 }

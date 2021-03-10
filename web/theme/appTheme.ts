@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { defaultMuiTheme } from 'theme/default';
 import { components } from './components';
 import { cssMixins } from './cssMixins';
+import { defaultMuiTheme } from './default';
 import { palette } from './palette';
 import { typography } from './typography';
 

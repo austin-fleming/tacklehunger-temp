@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from '@emotion/react';
-import { defaultMuiTheme } from 'theme/default';
+import { defaultMuiTheme } from './default';
 
 type TwisterProps = {
   angle?: number;

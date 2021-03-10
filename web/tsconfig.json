@@ -1,3 +1,7 @@
 {
-  "extends": "../tsconfig.json"
+  "extends": "../tsconfig.json",
+  "include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"],
+  "compilerOptions": {
+    "module": "commonjs"
+  }
 }

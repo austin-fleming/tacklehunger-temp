@@ -1,27 +1,15 @@
 {
-  "root": true,
   "project": {
-    "name": "Next.js landing pages"
+    "name": "TackleHunger.org Marketing Landing Pages"
   },
   "api": {
-    "projectId": "ozqarahg",
-    "dataset": "production"
+    "dataset": "production",
+    "projectId": "ozqarahg"
   },
-  "plugins": [
-    "@sanity/base",
-    "@sanity/components",
-    "@sanity/default-layout",
-    "@sanity/default-login",
-    "@sanity/dashboard",
-    "@sanity/desk-tool",
-    "dashboard-widget-structure-menu",
-    "dashboard-widget-document-list",
-    "@sanity/color-input"
-  ],
   "parts": [
     {
       "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema.ts"
+      "path": "./schema"
     },
     {
       "implements": "part:@sanity/desk-tool/structure",
@@ -31,5 +19,17 @@
       "implements": "part:@sanity/dashboard/config",
       "path": "./dashboardConfig.ts"
     }
-  ]
+  ],
+  "plugins": [
+    "@sanity/base",
+    "@sanity/color-input",
+    "@sanity/components",
+    "@sanity/dashboard",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "dashboard-widget-document-list",
+    "dashboard-widget-structure-menu"
+  ],
+  "root": true
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Grid } from '@material-ui/core';
 import imageUrlBuilder from '@sanity/image-url';
 import PropTypes from 'prop-types';
-import client from '../client';
 import Cta from './Cta';
 import styles from './Section.module.css';
 import SimpleBlockContent from './SimpleBlockContent';
@@ -21,7 +20,7 @@ const Section = ({
   console.log(image);
   return (
     <Container
-      maxWidth="xl"
+      maxWidth='xl'
       style={
         backgroundImage
           ? {

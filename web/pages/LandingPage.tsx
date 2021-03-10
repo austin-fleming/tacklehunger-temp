@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import Layout from '../components/Layout';
 import RenderSections from '../components/RenderSections';
-import { sanityClient } from '../sanity';
+import { sanity } from '../config/sanity';
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -45,12 +45,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
   const { slug } = context.query;
   if (slug && slug !== '/') {
-    return sanityClient.fetch(pageQuery, { slug }).then((res) => ({ ...res.page, slug }));
+    return sanity.fetch(pageQuery, { slug }).then((res) => ({ ...res.page, slug }));
   }
 
   // Frontpage
   if (slug && slug === '/') {
-    return sanityClient
+    return sanity
       .fetch(
         groq`
         *[_id == "global-config"][0]{

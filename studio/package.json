@@ -1,9 +1,10 @@
 {
-  "private": true,
   "name": "sanity-tacklehunger.org-studio",
-  "version": "1.0.10",
-  "main": "package.json",
-  "author": "Sanity <hello@sanity.io>",
+  "private": true,
+  "version": "1.0.12",
+  "engines": {
+    "node": ">=0.14"
+  },
   "scripts": {
     "build": "sanity build",
     "clean": "rm -rf .next out dist workers-site/worker workers-site/dist",
@@ -21,31 +22,12 @@
     "@sanity/desk-tool": "^2.3.3",
     "@sanity/studio-hints": "^2.2.6",
     "bcp47": "^1.1.2",
-    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.11"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.2.6",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.19.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-typescript": "^12.0.0",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-compat": "^3.9.0",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-sort-keys-fix": "^1.1.1",
-    "eslint-plugin-typescript-sort-keys": "^1.5.0",
-    "prettier": "^2.2.1",
-    "prettier-eslint-cli": "^5.0.0"
+    "@sanity/cli": "^2.2.6"
   }
 }

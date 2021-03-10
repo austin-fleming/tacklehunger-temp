@@ -38,7 +38,7 @@ export default class MyDocument extends Document<{ lang: string }> {
     }
 
     // TODO: add lang to each page (formerly getInitialProps)
-    //    sanityClient.fetch('*[_id == "global-config"] {lang}.lang[0]').then((lang: string) => (
+    //    sanity.fetch('*[_id == "global-config"] {lang}.lang[0]').then((lang: string) => (
     return { ...initialProps, styles };
   }
 

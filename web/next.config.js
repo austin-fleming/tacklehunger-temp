@@ -1,16 +1,6 @@
-/* eslint-disable no-eval */
-/* eslint-disable import/no-nodejs-modules */
-/* eslint-disable global-require */
-const requireTypescript = (path) => {
-  const fileContent = require('fs').readFileSync(path, 'utf8');
-  const compiled = require('@babel/core').transform(fileContent, {
-    filename: path,
-    presets: ['@babel/preset-typescript'],
-  });
-  return eval(compiled.code);
-};
+// require('ts-node').register(require('./tsconfig.json'));
+const createNextPluginPreval = require('next-plugin-preval/config');
+const withNextPluginPreval = createNextPluginPreval();
 
-const { sanityClient } = requireTypescript('./sanity');
-const { exportPathMap } = requireTypescript('./exportPathMap');
-
-module.exports = { exportPathMap, reactStrictMode: true };
+// module.exports = withNextPluginPreval(require('./config/next.ts'));
+module.exports = withNextPluginPreval();

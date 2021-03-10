@@ -2,7 +2,7 @@
 import { Theme as MUITheme } from '@material-ui/core/styles';
 // Include MUI lab types: https://next.material-ui.com/components/about-the-lab/#typescript
 import '@material-ui/lab/themeAugmentation';
-import { cssMixins } from 'theme/cssMixins';
+import { cssMixins } from './cssMixins';
 
 declare module '@material-ui/core/styles/zIndex' {
   export interface ZIndex {
