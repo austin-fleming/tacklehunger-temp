@@ -8443,10 +8443,10 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next-plugin-preval@^1.0.0-alpha.12:
-  version "1.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/next-plugin-preval/-/next-plugin-preval-1.0.0-alpha.12.tgz#e9417dfdc011423c75debe0a430b55b96049c582"
-  integrity sha512-s9M/rjGe+GiA1DQc1Sz3wfjovrQ2SjLc7c6WWPxgNlripsACSMu1zaleH/b6yemOdJk/eA3ykwMiKeR5fVsIEA==
+next-plugin-preval@^1.0.0-alpha.13:
+  version "1.0.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/next-plugin-preval/-/next-plugin-preval-1.0.0-alpha.13.tgz#71e4b6064f5f16c07c617e2e2636d77941180243"
+  integrity sha512-tQI2dML7PpARIt2GedIvE2MMy+A601q1Ot8p7AMc/VG6gI/fuGx2A7RzfmR5pjVfUm4LuqMfCZgQjW/clTsDHw==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/preset-env" "^7.12.11"

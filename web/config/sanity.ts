@@ -25,7 +25,7 @@ if (!sanityBaseConfig.dataset)
  * Helper function for generating Image URLs with only the asset reference data (https://www.sanity.io/docs/image-url)
  */
 export const urlFor = (source: SanityImageSource): string =>
-  createImageUrlBuilder(sanityBaseConfig).image(source).url() || '';
+  createImageUrlBuilder(sanityBaseConfig).image(source)?.url() || '';
 
 /**
  * Set up the live preview subscription hook

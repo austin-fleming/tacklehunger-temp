@@ -1,12 +1,25 @@
 import React from 'react';
 import { Container, Grid } from '@material-ui/core';
-import imageUrlBuilder from '@sanity/image-url';
-import PropTypes from 'prop-types';
-import Cta from './Cta';
-import styles from './Section.module.css';
+import { urlFor } from '../config/sanity';
+import { Cta } from './Cta';
 import SimpleBlockContent from './SimpleBlockContent';
 
-const Section = ({
+type SectionProps = {
+  backgroundImage: string;
+  ctaButtons: Record<string, unknown>[];
+  headingAbove: unknown[];
+  headingBelow: unknown[];
+  headingLeft: unknown[];
+  headingRight: unknown[];
+  image: {
+    alt: string;
+    asset: { _ref: string };
+    caption: string;
+  };
+  text: unknown[];
+};
+
+export const Section: React.FC<SectionProps> = ({
   backgroundImage,
   ctaButtons,
   headingAbove,
@@ -14,45 +27,45 @@ const Section = ({
   headingLeft,
   headingRight,
   image,
-  label,
   text,
 }) => {
   console.log(image);
+  const backgroundImageUrl = urlFor(backgroundImage);
   return (
     <Container
       maxWidth='xl'
       style={
         backgroundImage
           ? {
-              'background-image': `url("${urlFor(backgroundImage)}")`,
-              // 'background-size': 'contain',
+              backgroundImage: `url("${backgroundImageUrl}")`,
+              // 'backgroundSize': 'contain',
             }
           : {}
       }>
-      <img src={urlFor(backgroundImage)} style={{ visibility: 'hidden' }} />
-      {/* <Grid container xs={12}>
+      <img alt='' src={backgroundImageUrl} style={{ visibility: 'hidden' }} />
+      <Grid container xs={12}>
         {headingAbove && (
-          <Grid item className={styles.title}>
+          <Grid item>
             <SimpleBlockContent blocks={headingAbove} />
           </Grid>
         )}
         <Grid item xs={6}>
           {image && (
             <Grid item xs>
-              <figure className={styles.content}>
+              <figure>
                 <img
+                  alt={image.alt}
                   src={urlFor(image)}
                   style={{
                     display: 'block',
                     width: '100%',
                   }}
-                  alt={image.alt}
                 />
                 {image.caption && (
                   <figcaption>
-                    <div className={styles.caption}>
-                      <div className={styles.captionBox}>
-                        <div className={styles.label}>{image.caption}</div>
+                    <div>
+                      <div>
+                        <div>{image.caption}</div>
                       </div>
                     </div>
                   </figcaption>
@@ -61,48 +74,31 @@ const Section = ({
             </Grid>
           )}
           {headingRight && (
-            <Grid item className={styles.title} xs>
+            <Grid item xs>
               <SimpleBlockContent blocks={headingRight} />
             </Grid>
           )}
         </Grid>
         {headingBelow && (
-          <Grid item className={styles.title}>
+          <Grid item>
             <SimpleBlockContent blocks={headingBelow} />
           </Grid>
         )}
         {headingLeft && (
-          <Grid item className={styles.title}>
+          <Grid item>
             <SimpleBlockContent blocks={headingLeft} />
           </Grid>
         )}
         {text && <SimpleBlockContent blocks={text} />}
         {ctaButtons && (
-          <Grid item className={styles.ctas}>
+          <Grid item>
             {ctaButtons.map((cta) => (
+              // eslint-disable-next-line no-underscore-dangle
               <Cta {...cta} key={cta._key} />
             ))}
           </Grid>
         )}
-      </Grid> */}
+      </Grid>
     </Container>
   );
 };
-
-Section.propTypes = {
-  backgroundImage: PropTypes.string,
-  ctaButtons: PropTypes.arrayOf(PropTypes.object),
-  headingAbove: PropTypes.array,
-  headingBelow: PropTypes.array,
-  headingLeft: PropTypes.array,
-  headingRight: PropTypes.array,
-  image: PropTypes.shape({
-    asset: PropTypes.shape({
-      _ref: PropTypes.string,
-    }),
-  }),
-  label: PropTypes.string,
-  text: PropTypes.array,
-};
-
-export default Section;

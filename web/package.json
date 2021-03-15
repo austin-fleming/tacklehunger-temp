@@ -24,7 +24,7 @@
     "@sanity/image-url": "^0.140.22",
     "groq": "^2.2.6",
     "next": "^10.0.6",
-    "next-plugin-preval": "^1.0.0-alpha.12",
+    "next-plugin-preval": "^1.0.0-alpha.13",
     "next-sanity": "^0.1.8",
     "next-seo": "^4.19.0",
     "react": "^17.0.1",

@@ -1,10 +1,21 @@
 import React from 'react';
 import { LogoJsonLd } from 'next-seo';
 import Head from 'next/head';
-import Footer from './Footer';
-import Header from './Header';
+import { Footer } from './Footer';
+import { Header } from './Header';
 
-const Layout: React.FC<{ config: any }> = ({ config, children }) => {
+type LayoutProps = {
+  config: {
+    footerNavigation: Record<string, unknown>[];
+    footerText: Record<string, unknown>[];
+    logo: { asset: { url: string } };
+    mainNavigation: Record<string, unknown>[];
+    title: string;
+    url: string;
+  };
+};
+
+export const Layout: React.FC<LayoutProps> = ({ config, children }) => {
   if (!config) {
     console.error('Missing config');
     return <div>Missing config</div>;
@@ -27,21 +38,3 @@ const Layout: React.FC<{ config: any }> = ({ config, children }) => {
     </React.Fragment>
   );
 };
-
-// Layout.propTypes = {
-//   children: PropTypes.arrayOf(PropTypes.node),
-//   config: PropTypes.shape({
-//     footerNavigation: PropTypes.arrayOf(PropTypes.object),
-//     footerText: PropTypes.arrayOf(PropTypes.object),
-//     logo: PropTypes.shape({
-//       asset: PropTypes.shape({
-//         url: PropTypes.string,
-//       }),
-//     }),
-//     mainNavigation: PropTypes.arrayOf(PropTypes.object),
-//     title: PropTypes.string,
-//     url: PropTypes.string,
-//   }),
-// };
-
-export default Layout;

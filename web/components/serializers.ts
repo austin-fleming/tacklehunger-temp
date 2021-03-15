@@ -1,11 +1,9 @@
-import EmbedHTML from './EmbedHTML'
-import Figure from './Figure'
+import { EmbedHTML } from './EmbedHTML';
+import { Figure } from './Figure';
 
-const serializers = {
+export const serializers = {
   types: {
     embedHTML: EmbedHTML,
-    figure: Figure
-  }
-}
-
-export default serializers
+    figure: Figure,
+  },
+};
