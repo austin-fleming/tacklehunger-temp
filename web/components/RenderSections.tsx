@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Section from './Section';
+import { Section } from './Section';
 
 type Sections = {
   _key: string;

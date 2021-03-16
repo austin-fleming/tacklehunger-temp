@@ -5,6 +5,7 @@ import { CssBaseline, StylesProvider, ThemeProvider } from '@material-ui/core';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { appTheme } from '../theme';
+import siteGlobalConfig from './siteGlobalConfig.preval';
 
 // TODO: add this data into each page (formerly getInitialProps)
 //
@@ -35,7 +36,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
     <StylesProvider injectFirst>
       <ThemeProvider theme={appTheme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Component {...{ ...pageProps, ...siteGlobalConfig }} />
       </ThemeProvider>
     </StylesProvider>
   </CacheProvider>

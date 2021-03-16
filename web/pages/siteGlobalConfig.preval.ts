@@ -1,7 +1,14 @@
 import preval from 'next-plugin-preval';
+import { sanity } from '../config/sanity';
 
-async function getData() {
-  return { hello: 'world' };
-}
+const getSiteGlobalConfig = async () => {
+  const [config] = await sanity.getAll('site-config');
 
-export default preval(getData());
+  if (!config?.frontpage) throw new Error('yikes! no front page in global config');
+
+  const frontpage = await sanity.expand(config.frontpage);
+
+  return { ...frontpage, config };
+};
+
+export default preval(getSiteGlobalConfig());

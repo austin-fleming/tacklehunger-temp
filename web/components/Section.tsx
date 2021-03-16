@@ -1,8 +1,7 @@
 import React from 'react';
 import { Container, Grid } from '@material-ui/core';
-import { urlFor } from '../config/sanity';
+import { PortableText, urlFor } from '../config/sanity';
 import { Cta } from './Cta';
-import SimpleBlockContent from './SimpleBlockContent';
 
 type SectionProps = {
   backgroundImage: string;
@@ -46,7 +45,7 @@ export const Section: React.FC<SectionProps> = ({
       <Grid container xs={12}>
         {headingAbove && (
           <Grid item>
-            <SimpleBlockContent blocks={headingAbove} />
+            <PortableText blocks={headingAbove} />
           </Grid>
         )}
         <Grid item xs={6}>
@@ -75,21 +74,21 @@ export const Section: React.FC<SectionProps> = ({
           )}
           {headingRight && (
             <Grid item xs>
-              <SimpleBlockContent blocks={headingRight} />
+              <PortableText blocks={headingRight} />
             </Grid>
           )}
         </Grid>
         {headingBelow && (
           <Grid item>
-            <SimpleBlockContent blocks={headingBelow} />
+            <PortableText blocks={headingBelow} />
           </Grid>
         )}
         {headingLeft && (
           <Grid item>
-            <SimpleBlockContent blocks={headingLeft} />
+            <PortableText blocks={headingLeft} />
           </Grid>
         )}
-        {text && <SimpleBlockContent blocks={text} />}
+        {text && <PortableText blocks={text} />}
         {ctaButtons && (
           <Grid item>
             {ctaButtons.map((cta) => (

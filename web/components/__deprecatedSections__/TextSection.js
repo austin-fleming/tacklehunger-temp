@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SimpleBlockContent from '../SimpleBlockContent'
+import { PortableText } from '../PortableText'
 import styles from './TextSection.module.css'
 
 function TextSection (props) {
@@ -11,7 +11,7 @@ function TextSection (props) {
       <section className={styles.article}>
         <div className={styles.label}>{label}</div>
         <h2 className={styles.heading}>{heading}</h2>
-        {text && <SimpleBlockContent blocks={text} />}
+        {text && <PortableText blocks={text} />}
       </section>
     </div>
   )

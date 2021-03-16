@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import SimpleBlockContent from './SimpleBlockContent';
+import { PortableText } from '../config/sanity';
 
 type FooterProps = {
   navItems: {
@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ navItems, text }) => {
         </ul>
       </nav>
       <div>
-        <SimpleBlockContent blocks={text} />
+        <PortableText blocks={text} />
       </div>
     </div>
   );

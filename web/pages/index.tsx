@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import { Layout } from '../components/Layout';
 
 const IndexPage: React.FC<{ config: any }> = ({ config }) => (
   <Layout config={config}>

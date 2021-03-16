@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import imageUrlBuilder from '@sanity/image-url';
 import client from '../../client';
-import SimpleBlockContent from '../SimpleBlockContent';
+import { PortableText } from '../PortableText';
 import Cta from '../Cta';
 
 function urlFor(source) {
@@ -22,7 +22,7 @@ function Hero(props) {
     <div className={styles.root} style={style}>
       <div className={styles.content}>
         <h1 className={styles.title}>{heading}</h1>
-        <div className={styles.tagline}>{tagline && <SimpleBlockContent blocks={tagline} />}</div>
+        <div className={styles.tagline}>{tagline && <PortableText blocks={tagline} />}</div>
         {ctas && (
           <div className={styles.ctas}>
             {ctas.map((cta) => (
