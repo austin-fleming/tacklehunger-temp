@@ -1,95 +1,27 @@
 import React from 'react';
-import groq from 'groq';
-import { GetStaticProps } from 'next';
+// import groq from 'groq';
 import { NextSeo } from 'next-seo';
 import { Layout } from '../components/Layout';
 import { RenderSections } from '../components/RenderSections';
-import { sanity } from '../config/sanity';
 
-const pageQuery = groq`
-*[_type == "route" && slug.current == $slug][0]{
-  page-> {
-    ...,
-    content[] {
-      ...,
-      cta {
-        ...,
-        route->
-      },
-      ctas[] {
-        ...,
-        route->
-      }
-    }
-  }
-}
-`;
-
-// TODO: improve types
-type LandingPageProps = {
-  config: any;
-  content: any;
-  description: string;
-  disallowRobots: any;
-  openGraphImage: any;
-  slug: any;
-  title: string;
-};
-
-type LandingPageParams = ParsedUrlQuery & { query: any };
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   if (!context?.params?.query) {
-//     console.error('no query');
-//     return null;
+// const pageQuery = groq`
+// *[_type == "route" && slug.current == $slug][0]{
+//   page-> {
+//     ...,
+//     content[] {
+//       ...,
+//       cta {
+//         ...,
+//         route->
+//       },
+//       ctas[] {
+//         ...,
+//         route->
+//       }
+//     }
 //   }
-//   const { slug } = context?.query;
-
-// console.log(context);
-
-//   const res = await sanity.getAll('site-config');
-//   console.log(res);
-
-//   return {
-//     props: {
-//       ...res.page,
-//       // slug,
-//     },
-//   };
-
-//   // Frontpage
-//   if (slug && slug === '/') {
-// const siteConfig = await sanity.get('page', 'global-config');
-//     console.log(siteConfig);
-//     return siteConfig;
-//     // .fetch(
-//     //   groq`
-//     //   *[_id == "global-config"][0]{
-//     //     frontpage -> {
-//     //       ...,
-//     //       content[] {
-//     //         ...,
-//     //         cta {
-//     //           ...,
-//     //           route->
-//     //         },
-//     //         ctas[] {
-//     //           ...,
-//     //           route->
-//     //         }
-//     //       }
-//     //     }
-//     //   }
-//     // `
-//     // )
-//     // .then((res) => ({ ...res.frontpage, slug }))
-//   }
-//   const res = await sanity.getAll('site-config');
-//   console.log('*'.repeat(300));
-//   console.log(res);
-//   return { ...res.page, slug };
-//   return { props: siteConfig };
-// };
+// }
+// `;
 
 export const LandingPage: NextPage<{}> = ({
   title = 'Missing title',
@@ -100,7 +32,6 @@ export const LandingPage: NextPage<{}> = ({
   config = {},
   slug,
 }) => (
-  // return null;
   // const openGraphImages = openGraphImage
   //   ? [
   //       {
