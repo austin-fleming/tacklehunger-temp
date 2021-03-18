@@ -1,7 +1,10 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
+import styled from '@emotion/styled';
 import { Container, Grid } from '@material-ui/core';
 import { PortableText, urlFor } from '../config/sanity';
 import { Cta } from './Cta';
+import { SectionElement } from './SectionElement';
 
 type SectionProps = {
   backgroundImage: string;
@@ -18,6 +21,15 @@ type SectionProps = {
   text: unknown[];
 };
 
+const HeadingAbove = ({ headingAbove }) => {
+  if (!headingAbove) return null;
+  return (
+    <Grid item>
+      <PortableText blocks={headingAbove} />
+    </Grid>
+  );
+};
+
 export const Section: React.FC<SectionProps> = ({
   backgroundImage,
   ctaButtons,
@@ -28,20 +40,16 @@ export const Section: React.FC<SectionProps> = ({
   image,
   text,
 }) => {
-  console.log(image);
   const backgroundImageUrl = urlFor(backgroundImage);
+
   return (
-    <Container
-      maxWidth='xl'
-      style={
-        backgroundImage
-          ? {
-              backgroundImage: `url("${backgroundImageUrl}")`,
-              // 'backgroundSize': 'contain',
-            }
-          : {}
-      }>
-      <img alt='' src={backgroundImageUrl} style={{ visibility: 'hidden' }} />
+    <SectionElement {...{ backgroundImage, backgroundImageUrl }}>
+      <HeadingAbove {...{ headingAbove }} />
+    </SectionElement>
+  );
+
+  return (
+    <SectionElement maxWidth='xl' {...{ backgroundImage, backgroundImageUrl }}>
       <Grid container xs={12}>
         {headingAbove && (
           <Grid item>
@@ -98,6 +106,6 @@ export const Section: React.FC<SectionProps> = ({
           </Grid>
         )}
       </Grid>
-    </Container>
+    </SectionElement>
   );
 };
