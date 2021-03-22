@@ -8,6 +8,7 @@ type CtaProps = {
 };
 
 export const Cta: React.FC<CtaProps> = ({ title, route, link }) => {
+  console.log(title, route, link);
   if (route?.slug?.current) {
     return (
       <Link

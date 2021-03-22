@@ -1,7 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
 import styled from '@emotion/styled';
-import { Container, div } from '@material-ui/core';
 import { PortableText, urlFor } from '../config/sanity';
 import { Cta } from './Cta';
 import { SectionElement } from './SectionElement';
@@ -23,17 +22,27 @@ type SectionProps = {
 
 const CenteralRowWrapper = styled.div`
   display: flex;
-  figure {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  .image-and-text-area {
     max-width: 50%;
   }
 `;
 
 const HeadingAbove = ({ headingAbove }) => {
   if (!headingAbove) return null;
-  console.log(headingAbove);
   return (
     <div className='top row'>
       <PortableText blocks={headingAbove} />
+    </div>
+  );
+};
+const HeadingBelow = ({ headingBelow }) => {
+  if (!headingBelow) return null;
+  return (
+    <div className='top row'>
+      <PortableText blocks={headingBelow} />
     </div>
   );
 };
@@ -46,7 +55,7 @@ const CenteralRow = ({ headingLeft, headingRight, image }) => (
       </div>
     )}
     {image && (
-      <div>
+      <div className='image-and-text-area'>
         <figure>
           <img
             alt={image.alt}
@@ -92,67 +101,15 @@ export const Section: React.FC<SectionProps> = ({
     <SectionElement {...{ backgroundImage, backgroundImageUrl }}>
       <HeadingAbove {...{ headingAbove }} />
       <CenteralRow {...{ headingLeft, headingRight, image }} />
-    </SectionElement>
-  );
-
-  return (
-    <SectionElement maxWidth='xl' {...{ backgroundImage, backgroundImageUrl }}>
-      <div container xs={12}>
-        {headingAbove && (
-          <div item>
-            <PortableText blocks={headingAbove} />
-          </div>
-        )}
-        <div item xs={6}>
-          {image && (
-            <div item xs>
-              <figure>
-                <img
-                  alt={image.alt}
-                  src={urlFor(image)}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                  }}
-                />
-                {image.caption && (
-                  <figcaption>
-                    <div>
-                      <div>
-                        <div>{image.caption}</div>
-                      </div>
-                    </div>
-                  </figcaption>
-                )}
-              </figure>
-            </div>
-          )}
-          {headingRight && (
-            <div item xs>
-              <PortableText blocks={headingRight} />
-            </div>
-          )}
+      <HeadingBelow {...{ headingBelow }} />
+      {text && <PortableText blocks={text} />}
+      {ctaButtons && (
+        <div>
+          {ctaButtons.map((cta) => (
+            <Cta {...cta} key={cta._key} />
+          ))}
         </div>
-        {headingBelow && (
-          <div item>
-            <PortableText blocks={headingBelow} />
-          </div>
-        )}
-        {headingLeft && (
-          <div item>
-            <PortableText blocks={headingLeft} />
-          </div>
-        )}
-        {text && <PortableText blocks={text} />}
-        {ctaButtons && (
-          <div item>
-            {ctaButtons.map((cta) => (
-              // eslint-disable-next-line no-underscore-dangle
-              <Cta {...cta} key={cta._key} />
-            ))}
-          </div>
-        )}
-      </div>
+      )}
     </SectionElement>
   );
 };
