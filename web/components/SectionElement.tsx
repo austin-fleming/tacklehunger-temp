@@ -15,7 +15,9 @@ export const SectionElement = ({ children, backgroundImage, ...props }) => {
 
   return (
     <SectionWrapper {...{ backgroundImage, dimensions, ...props }}>
-      <img ref={imageRef} alt='' src={urlFor(backgroundImage)} style={{ visibility: 'hidden' }} />
+      {!dimensions.height && (
+        <img ref={imageRef} alt='' src={urlFor(backgroundImage)} style={{ visibility: 'hidden' }} />
+      )}
       {children}
     </SectionWrapper>
   );
@@ -33,4 +35,7 @@ const SectionWrapper = styled.div`
     `
     background-image: url("${urlFor(backgroundImage)}");
   `}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
