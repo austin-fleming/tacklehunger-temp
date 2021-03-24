@@ -4,10 +4,10 @@ import Link from 'next/link';
 type CtaProps = {
   link?: string;
   route?: { slug?: { current?: string } };
-  title: string;
+  text: string;
 };
 
-export const Cta: React.FC<CtaProps> = ({ title, route, link }) => {
+export const Cta: React.FC<CtaProps> = ({ text: title, route, link }) => {
   console.log(title, route, link);
   if (route?.slug?.current) {
     return (

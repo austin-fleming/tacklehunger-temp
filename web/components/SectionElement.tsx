@@ -14,9 +14,11 @@ export const SectionElement = ({ children, backgroundImage, ...props }) => {
     }
   }, [imageRef]);
 
+  const needMeasurements = !dimensions?.height;
+
   return (
     <SectionWrapper {...{ backgroundImage, dimensions, ...props }}>
-      {!dimensions?.height && (
+      {needMeasurements && (
         <img ref={imageRef} alt='' src={urlFor(backgroundImage)} style={{ visibility: 'hidden' }} />
       )}
       {children}

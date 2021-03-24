@@ -48,42 +48,42 @@ const HeadingBelow = ({ headingBelow }) => {
 };
 
 const CenteralRow = ({ headingLeft, headingRight, image }) => (
-  <CenteralRowWrapper className='center row'>
-    {headingLeft && (
-      <div>
-        <PortableText blocks={headingLeft} />
-      </div>
-    )}
-    {image && (
-      <div className='image-and-text-area'>
-        <figure>
-          <img
-            alt={image.alt}
-            src={urlFor(image)}
-            style={{
-              display: 'block',
-              width: '100%',
-            }}
-          />
-          {image.caption && (
-            <figcaption>
-              <div>
+    <CenteralRowWrapper className='center row'>
+      {headingLeft && (
+        <div>
+          <PortableText blocks={headingLeft} />
+        </div>
+      )}
+      {image && (
+        <div className='image-and-text-area'>
+          <figure>
+            <img
+              alt={image.alt}
+              src={urlFor(image)}
+              style={{
+                display: 'block',
+                width: '100%',
+              }}
+            />
+            {image.caption && (
+              <figcaption>
                 <div>
-                  <div>{image.caption}</div>
+                  <div>
+                    <div>{image.caption}</div>
+                  </div>
                 </div>
-              </div>
-            </figcaption>
-          )}
-        </figure>
-      </div>
-    )}
-    {headingRight && (
-      <div>
-        <PortableText blocks={headingRight} />
-      </div>
-    )}
-  </CenteralRowWrapper>
-);
+              </figcaption>
+            )}
+          </figure>
+        </div>
+      )}
+      {headingRight && (
+        <div>
+          <PortableText blocks={headingRight} />
+        </div>
+      )}
+    </CenteralRowWrapper>
+  );
 
 export const Section: React.FC<SectionProps> = ({
   backgroundImage,
@@ -94,9 +94,10 @@ export const Section: React.FC<SectionProps> = ({
   headingRight,
   image,
   text,
+  ...props
 }) => {
   const backgroundImageUrl = urlFor(backgroundImage);
-
+  console.log(ctaButtons);
   return (
     <SectionElement {...{ backgroundImage, backgroundImageUrl }}>
       <HeadingAbove {...{ headingAbove }} />
