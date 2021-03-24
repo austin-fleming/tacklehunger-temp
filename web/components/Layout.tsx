@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Container } from '@material-ui/core';
 import { LogoJsonLd } from 'next-seo';
 import Head from 'next/head';
 import { Footer } from './Footer';
@@ -25,16 +26,16 @@ export const Layout: React.FC<LayoutProps> = ({ config, children }) => {
   const logoUrl = logo?.asset?.url;
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Head>
         <meta content='initial-scale=1.0, width=device-width, viewport-fit=cover' name='viewport' />
       </Head>
-      <div className='container'>
+      <Container disableGutters maxWidth='lg'>
         <Header logo={logo} navItems={mainNavigation} title={title} />
         <div className='content'>{children}</div>
         <Footer navItems={footerNavigation} text={footerText} />
         {logoUrl && url && <LogoJsonLd logo={logoUrl} url={url} />}
-      </div>
-    </React.Fragment>
+      </Container>
+    </Fragment>
   );
 };

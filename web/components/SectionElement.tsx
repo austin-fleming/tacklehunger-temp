@@ -3,6 +3,23 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { urlFor } from '../config/sanity';
 
+const SectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  ${({ dimensions }) =>
+    dimensions?.height &&
+    css`
+      height: ${dimensions.height}px;
+      width: ${dimensions.width}px;
+    `}
+  ${({ backgroundImage }) =>
+    backgroundImage &&
+    css`
+      background-image: url('${urlFor(backgroundImage)}');
+    `}
+`;
+
 export const SectionElement = ({ children, backgroundImage, ...props }) => {
   const imageRef = React.useRef<HTMLImageElement>();
   const [dimensions, setDimensions] = React.useState({});
@@ -25,20 +42,3 @@ export const SectionElement = ({ children, backgroundImage, ...props }) => {
     </SectionWrapper>
   );
 };
-
-const SectionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  ${({ dimensions }) =>
-    dimensions?.height &&
-    css`
-      height: ${dimensions.height}px;
-      width: ${dimensions.width}px;
-    `}
-  ${({ backgroundImage }) =>
-    backgroundImage &&
-    css`
-      background-image: url('${urlFor(backgroundImage)}');
-    `}
-`;

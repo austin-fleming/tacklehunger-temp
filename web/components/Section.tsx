@@ -20,7 +20,7 @@ type SectionProps = {
   text: unknown[];
 };
 
-const CenteralRowWrapper = styled.div`
+const CentralRowWrapper = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
@@ -47,43 +47,43 @@ const HeadingBelow = ({ headingBelow }) => {
   );
 };
 
-const CenteralRow = ({ headingLeft, headingRight, image }) => (
-    <CenteralRowWrapper className='center row'>
-      {headingLeft && (
-        <div>
-          <PortableText blocks={headingLeft} />
-        </div>
-      )}
-      {image && (
-        <div className='image-and-text-area'>
-          <figure>
-            <img
-              alt={image.alt}
-              src={urlFor(image)}
-              style={{
-                display: 'block',
-                width: '100%',
-              }}
-            />
-            {image.caption && (
-              <figcaption>
+const CentralRow = ({ headingLeft, headingRight, image }) => (
+  <CentralRowWrapper className='center row'>
+    {headingLeft && (
+      <div>
+        <PortableText blocks={headingLeft} />
+      </div>
+    )}
+    {image && (
+      <div className='image-and-text-area'>
+        <figure>
+          <img
+            alt={image.alt}
+            src={urlFor(image)}
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          />
+          {image.caption && (
+            <figcaption>
+              <div>
                 <div>
-                  <div>
-                    <div>{image.caption}</div>
-                  </div>
+                  <div>{image.caption}</div>
                 </div>
-              </figcaption>
-            )}
-          </figure>
-        </div>
-      )}
-      {headingRight && (
-        <div>
-          <PortableText blocks={headingRight} />
-        </div>
-      )}
-    </CenteralRowWrapper>
-  );
+              </div>
+            </figcaption>
+          )}
+        </figure>
+      </div>
+    )}
+    {headingRight && (
+      <div>
+        <PortableText blocks={headingRight} />
+      </div>
+    )}
+  </CentralRowWrapper>
+);
 
 export const Section: React.FC<SectionProps> = ({
   backgroundImage,
@@ -101,7 +101,7 @@ export const Section: React.FC<SectionProps> = ({
   return (
     <SectionElement {...{ backgroundImage, backgroundImageUrl }}>
       <HeadingAbove {...{ headingAbove }} />
-      <CenteralRow {...{ headingLeft, headingRight, image }} />
+      <CentralRow {...{ headingLeft, headingRight, image }} />
       <HeadingBelow {...{ headingBelow }} />
       {text && <PortableText blocks={text} />}
       {ctaButtons && (
