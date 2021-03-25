@@ -21,14 +21,11 @@ type SectionProps = {
   text: unknown[];
 };
 
-const CentralRow = styled.div`
+const CenterRow = styled.div`
   display: flex;
-  flex: 1;
+  flex: 1 1;
   justify-content: center;
   align-items: center;
-  .image-and-text-area {
-    max-width: 50%;
-  }
 `;
 
 export const Section: React.FC<SectionProps> = ({
@@ -41,26 +38,15 @@ export const Section: React.FC<SectionProps> = ({
   image,
   text,
 }) => {
-  const [imageSize, setImageSize] = useState(undefined);
-
-  const imgRef = useRef(null);
-  useEffect(() => {
-    try {
-      if (imgRef?.current?.offsetWidth) {
-        setImageSize(imgRef.current.offsetWidth);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [imgRef]);
+  const width = 100 / [headingLeft, image, headingRight].filter((el) => !!el).length;
 
   return (
     <SectionElement backgroundImage={backgroundImage}>
       {headingAbove && <BlockHeading blocks={headingAbove} />}
-      <CentralRow>
-        {headingLeft && <BlockHeading blocks={headingLeft} />}
+      <CenterRow>
+        {headingLeft && <BlockHeading blocks={headingLeft} style={{ width }} />}
         {image && (
-          <div ref={imgRef}>
+          <div style={{ width }}>
             <figure>
               <img
                 alt={image.alt}
@@ -72,23 +58,16 @@ export const Section: React.FC<SectionProps> = ({
               />
               {image.caption && (
                 <figcaption>
-                  <div>
-                    <div>
-                      <div>{image.caption}</div>
-                    </div>
-                  </div>
+                  <div>{image.caption}</div>
                 </figcaption>
               )}
             </figure>
           </div>
         )}
         {headingRight && (
-          <BlockHeading
-            blocks={headingRight}
-            style={{ textAlign: 'right', width: imageSize || undefined }}
-          />
+          <BlockHeading blocks={headingRight} style={{ textAlign: 'right', width }} />
         )}
-      </CentralRow>
+      </CenterRow>
       {headingBelow && <BlockHeading blocks={headingBelow} />}
       {text && <PortableText blocks={text} serializers={serializers} />}
       {ctaButtons && (

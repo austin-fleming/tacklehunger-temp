@@ -23,7 +23,7 @@ const SectionWrapper = styled.div`
 `;
 
 export const SectionElement = ({ children, backgroundImage, ...props }) => {
-  const imageRef = React.useRef<HTMLImageElement>();
+  const imageRef = React.useRef<HTMLImageElement>(null);
   const [dimensions, setDimensions] = React.useState({});
 
   React.useEffect(() => {
