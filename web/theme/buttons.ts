@@ -7,7 +7,7 @@ const padding = defaultMuiTheme.spacing(1, 4);
 export const componentsButtons: ThemeOptions['components'] = {
   MuiButton: {
     defaultProps: {
-      disableElevation: true,
+      disableElevation: false,
       type: 'button',
     },
     styleOverrides: {
@@ -33,7 +33,7 @@ export const componentsButtons: ThemeOptions['components'] = {
         },
 
         // Add some default styles to all buttons
-        borderRadius: 100,
+        borderRadius: 10,
         // For mobile touch targets
         minHeight: '44px',
         minWidth: defaultMuiTheme.spacing(14),

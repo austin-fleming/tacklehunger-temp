@@ -60,9 +60,9 @@ export default class MyDocument extends Document<{ lang: string }> {
             />
             <link href='/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png' />
             <link href='/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png' />
-            <link href='/favicon.ico' rel='shortcut icon' />
-            <link href='/site.webmanifest' rel='manifest' />
-          */}
+            */}
+          <link href='/favicon.ico' rel='shortcut icon' />
+          <link href='/site.webmanifest' rel='manifest' />
           <meta charSet='utf-8' />
         </Head>
         <body>

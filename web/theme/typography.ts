@@ -79,18 +79,18 @@ export const typography: ThemeOptions['typography'] = {
   },
   button: {
     ...trackLgTypography,
-    fontSize: '1rem',
+    fontSize: '1.5rem',
     fontWeight: 700,
     textTransform: 'uppercase',
   },
   fontFamily: typographyConstants.fontFamily,
   // Should semantically only be used once per page
   h1: {
-    ...headingTypography(1.5),
+    ...headingTypography(1.75),
   },
   // Make h2s visually the same as a h1
   h2: {
-    ...headingTypography(1.5),
+    ...headingTypography(1.75),
   },
   h3: {
     ...headingTypography(1.125),

@@ -3,6 +3,8 @@ import React from 'react';
 import { EmbedHTML } from './EmbedHTML';
 import { Figure } from './Figure';
 
+const Bold: React.FC = ({ children }) => <span style={{ fontWeight: 'bold' }}>{children}</span>;
+
 const Color: React.FC<{ mark: any }> = ({ mark, children }) => (
   <span style={{ color: mark.hex }}>{children}</span>
 );
@@ -12,7 +14,7 @@ const FontWeight500: React.FC = ({ children }) => (
 );
 
 export const serializers = {
-  marks: { color: Color, wt500: FontWeight500 },
+  marks: { bold: Bold, color: Color, wt500: FontWeight500 },
   types: {
     embedHTML: EmbedHTML,
     figure: Figure,

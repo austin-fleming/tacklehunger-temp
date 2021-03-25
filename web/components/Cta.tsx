@@ -1,5 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
+import { Button } from '@material-ui/core';
+import { PrimaryButton } from 'web/components/Buttons';
+import { Link } from './Link';
 
 type CtaProps = {
   link?: string;
@@ -7,8 +9,7 @@ type CtaProps = {
   text: string;
 };
 
-export const Cta: React.FC<CtaProps> = ({ text: title, route, link }) => {
-  console.log(title, route, link);
+export const Cta: React.FC<CtaProps> = ({ text, route, link }) => {
   if (route?.slug?.current) {
     return (
       <Link
@@ -17,14 +18,10 @@ export const Cta: React.FC<CtaProps> = ({ text: title, route, link }) => {
           pathname: '/LandingPage',
           query: { slug: route.slug.current },
         }}>
-        <a>{title}</a>
+        <Button variant='contained'>{text}</Button>
       </Link>
     );
   }
 
-  if (link) {
-    return <a href={link}>{title}</a>;
-  }
-
-  return <a>{title}</a>;
+  return <PrimaryButton href={link || ''}>{text}</PrimaryButton>;
 };

@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import { Grid } from '@material-ui/core';
 import { PortableText, urlFor } from '../config/sanity';
+import { BlockHeading } from './BlockHeading';
 import { Cta } from './Cta';
 import { SectionElement } from './SectionElement';
-import { serializers } from './serializers';
 
 type SectionProps = {
   backgroundImage: string;
@@ -20,7 +21,7 @@ type SectionProps = {
   text: unknown[];
 };
 
-const CentralRow = styled.div`
+const CentralRow = styled(Grid)`
   display: flex;
   flex: 1;
   justify-content: center;
@@ -40,8 +41,6 @@ export const Section: React.FC<SectionProps> = ({
   image,
   text,
 }) => {
-  const backgroundImageUrl = urlFor(backgroundImage);
-  console.log(JSON.stringify(headingRight, undefined, 2));
   const [imageSize, setImageSize] = useState(undefined);
 
   const imgRef = useRef(null);
@@ -56,16 +55,16 @@ export const Section: React.FC<SectionProps> = ({
   }, [imgRef]);
 
   return (
-    <SectionElement {...{ backgroundImage, backgroundImageUrl }}>
-      {headingAbove && (
-        <h1>
-          <PortableText blocks={headingAbove} serializers={serializers} />
-        </h1>
-      )}
-      <CentralRow>
-        {headingLeft && <PortableText blocks={headingLeft} serializers={serializers} />}
+    <SectionElement backgroundImage={backgroundImage}>
+      {headingAbove && <BlockHeading blocks={headingAbove} />}
+      <CentralRow container>
+        {headingLeft && (
+          <Grid item>
+            <BlockHeading blocks={headingLeft} />
+          </Grid>
+        )}
         {image && (
-          <div ref={imgRef} className='image-and-text-area'>
+          <Grid ref={imgRef}>
             <figure>
               <img
                 alt={image.alt}
@@ -85,16 +84,16 @@ export const Section: React.FC<SectionProps> = ({
                 </figcaption>
               )}
             </figure>
-          </div>
+          </Grid>
         )}
         {headingRight && (
-          <h1 style={{ textAlign: 'right', width: imageSize || undefined }}>
-            <PortableText blocks={headingRight} serializers={serializers} />
-          </h1>
+          <Grid item>
+            <BlockHeading blocks={headingRight} style={{ textAlign: 'right' }} />
+          </Grid>
         )}
       </CentralRow>
-      {headingBelow && <PortableText blocks={headingBelow} serializers={serializers} />}
-      {text && <PortableText blocks={text} serializers={serializers} />}
+      {headingBelow && <BlockHeading blocks={headingBelow} />}
+      {text && <BlockHeading blocks={text} />}
       {ctaButtons && (
         <div>
           {ctaButtons.map((cta) => (
