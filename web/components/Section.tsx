@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import { Grid } from '@material-ui/core';
 import { PortableText, urlFor } from '../config/sanity';
 import { BlockHeading } from './BlockHeading';
 import { Cta } from './Cta';
 import { SectionElement } from './SectionElement';
+import { serializers } from './serializers';
 
 type SectionProps = {
   backgroundImage: string;
@@ -21,7 +21,7 @@ type SectionProps = {
   text: unknown[];
 };
 
-const CentralRow = styled(Grid)`
+const CentralRow = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
@@ -57,14 +57,10 @@ export const Section: React.FC<SectionProps> = ({
   return (
     <SectionElement backgroundImage={backgroundImage}>
       {headingAbove && <BlockHeading blocks={headingAbove} />}
-      <CentralRow container>
-        {headingLeft && (
-          <Grid item>
-            <BlockHeading blocks={headingLeft} />
-          </Grid>
-        )}
+      <CentralRow>
+        {headingLeft && <BlockHeading blocks={headingLeft} />}
         {image && (
-          <Grid ref={imgRef}>
+          <div ref={imgRef}>
             <figure>
               <img
                 alt={image.alt}
@@ -84,16 +80,17 @@ export const Section: React.FC<SectionProps> = ({
                 </figcaption>
               )}
             </figure>
-          </Grid>
+          </div>
         )}
         {headingRight && (
-          <Grid item>
-            <BlockHeading blocks={headingRight} style={{ textAlign: 'right' }} />
-          </Grid>
+          <BlockHeading
+            blocks={headingRight}
+            style={{ textAlign: 'right', width: imageSize || undefined }}
+          />
         )}
       </CentralRow>
       {headingBelow && <BlockHeading blocks={headingBelow} />}
-      {text && <BlockHeading blocks={text} />}
+      {text && <PortableText blocks={text} serializers={serializers} />}
       {ctaButtons && (
         <div>
           {ctaButtons.map((cta) => (
