@@ -7,12 +7,14 @@ const SectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-size: cover;
+
   ${({ dimensions }) =>
     dimensions?.height &&
     css`
       height: ${dimensions.height}px;
-      width: ${dimensions.width}px;
     `}
+
   ${({ backgroundImage }) =>
     backgroundImage &&
     css`

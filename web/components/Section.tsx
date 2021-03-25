@@ -30,14 +30,11 @@ const CentralRowWrapper = styled.div`
   }
 `;
 
-const HeadingAbove = ({ headingAbove }) => {
-  if (!headingAbove) return null;
-  return (
+const BlockHeading = ({ blocks }) => (
     <div className='top row'>
-      <PortableText blocks={headingAbove} />
+      <PortableText blocks={blocks} />
     </div>
   );
-};
 const HeadingBelow = ({ headingBelow }) => {
   if (!headingBelow) return null;
   return (
@@ -100,7 +97,7 @@ export const Section: React.FC<SectionProps> = ({
   console.log(ctaButtons);
   return (
     <SectionElement {...{ backgroundImage, backgroundImageUrl }}>
-      <HeadingAbove {...{ headingAbove }} />
+      {headingAbove && <BlockHeading blocks={headingAbove} />}
       <CentralRow {...{ headingLeft, headingRight, image }} />
       <HeadingBelow {...{ headingBelow }} />
       {text && <PortableText blocks={text} />}
