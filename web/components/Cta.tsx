@@ -5,7 +5,7 @@ import { Link } from './Link';
 
 const CtaButton = styled(PrimaryButton)<{ ctaColor?: string }>`
   height: 70px;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 25px;
 
   ${({ ctaColor }) => ctaColor && `background: ${ctaColor};`}

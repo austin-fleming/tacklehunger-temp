@@ -8,9 +8,9 @@ export default {
     {
       name: 'content',
       of: [{ type: 'section' }],
-        // { type: 'hero' },
-        // { type: 'imageSection' },
-        // { type: 'textSection' },
+      // { type: 'hero' },
+      // { type: 'imageSection' },
+      // { type: 'textSection' }]
       title: 'Page sections',
       type: 'array',
     },
@@ -19,7 +19,7 @@ export default {
       name: 'subMenu',
       of: [
         {
-          to: [{ type: 'route' }],
+          to: [{ type: 'section' }],
           type: 'reference',
         },
       ],
