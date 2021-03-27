@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
+import { SanityKeyed, Section as SectionType } from '../types/generated/schema';
 import { Section } from './Section';
 
-type Sections = {
-  _key: string;
-  _type: string;
-  section: Record<string, unknown>;
-}[];
-
-export const RenderSections: React.FC<{ sections: Sections }> = ({ sections }) => {
+export const RenderSections: React.FC<{ sections: SanityKeyed<SectionType>[] }> = ({
+  sections,
+}) => {
   if (!sections || !sections.length) {
     console.error('Missing section');
     return <div>Missing sections</div>;

@@ -1,16 +1,15 @@
 import React from 'react';
 import { useTheme } from '@emotion/react';
+import { CtaButton, Route } from '../types/generated/schema';
 import { PrimaryButton } from './Buttons';
 import { Link } from './Link';
 
-type CtaProps = {
-  buttonColor?: { hex?: string };
-  link?: string;
-  route?: { slug?: { current?: string } };
-  text: string;
-};
-
-export const Cta: React.FC<CtaProps> = ({ buttonColor, text, route, link }) => {
+export const Cta: React.FC<CtaButton & { route: Omit<Route, '_type'> }> = ({
+  buttonColor,
+  text,
+  route,
+  link,
+}) => {
   const { isMobile } = useTheme();
 
   const defaultStyle = { background: buttonColor?.hex || 'inherit' };

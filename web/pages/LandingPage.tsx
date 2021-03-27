@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from 'react';
-// import groq from 'groq';
-import { NextSeo } from 'next-seo';
+import { NextPage } from 'next';
+// import { NextSeo } from 'next-seo';
+import { Page, Section, SiteConfig } from 'web/types/generated/schema';
 import { Layout } from '../components/Layout';
 import { RenderSections } from '../components/RenderSections';
 
@@ -23,13 +25,15 @@ import { RenderSections } from '../components/RenderSections';
 // }
 // `;
 
-export const LandingPage: NextPage<{}> = ({
+export const LandingPage: NextPage<
+  SiteConfig & SiteConfig['frontpage'] & { content: Section[] }
+> = ({
   title = 'Missing title',
   description,
   disallowRobots,
   openGraphImage,
-  content = [],
-  config = {},
+  content,
+  config,
   slug,
 }) => (
   // const openGraphImages = openGraphImage
@@ -58,7 +62,7 @@ export const LandingPage: NextPage<{}> = ({
   //   : [];
 
   <Layout config={config}>
-    <NextSeo
+    {/* <NextSeo
       config={{
         canonical: config.url && `${config.url}/${slug}`,
         description,
@@ -69,7 +73,7 @@ export const LandingPage: NextPage<{}> = ({
         title,
         titleTemplate: `${config.title} | %s`,
       }}
-    />
+    /> */}
     {content && <RenderSections sections={content} />}
   </Layout>
 );

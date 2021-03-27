@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SVG from 'react-inlinesvg';
-import HamburgerIcon from './icons/Hamburger';
+import HamburgerIcon from '../icons/Hamburger';
 
 type HeaderProps = {
   logo: {

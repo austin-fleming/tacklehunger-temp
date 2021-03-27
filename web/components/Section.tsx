@@ -5,23 +5,7 @@ import { PortableText, urlFor } from '../config/sanity';
 import { BlockHeading } from './BlockHeading';
 import { Cta } from './Cta';
 import { serializers } from './serializers';
-
-type SectionProps = {
-  backgroundImage: string;
-  ctaButtons: Record<string, unknown>[];
-  headingAbove: unknown[];
-  headingBelow: unknown[];
-  headingLeft: unknown[];
-  headingRight: unknown[];
-  image: {
-    alt: string;
-    asset: { _ref: string };
-    caption: string;
-  };
-  label: string;
-  mobileBackgroundImage: string;
-  text: unknown[];
-};
+import { CtaButton, Route, Section as SectionProps } from '../types/generated/schema';
 
 const SectionWrapper = styled.div<{ shouldZoomBg: boolean }>`
   position: relative;
@@ -152,7 +136,10 @@ export const Section: React.FC<SectionProps> = ({
         {ctaButtons && (
           <div style={isMobile ? { width: '100%' } : {}}>
             {ctaButtons.map((cta) => (
-              <Cta {...cta} key={cta._key} />
+              <Cta
+                {...((cta as unknown) as CtaButton & { route: Omit<Route, '_type'> })}
+                key={cta._key}
+              />
             ))}
           </div>
         )}
