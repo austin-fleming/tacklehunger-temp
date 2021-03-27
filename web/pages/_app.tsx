@@ -4,8 +4,9 @@ import { CacheProvider } from '@emotion/react';
 import { CssBaseline, StylesProvider, ThemeProvider, useMediaQuery } from '@material-ui/core';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { Documents } from 'web/types/generated/schema';
+import siteGlobalConfig from '../config/siteGlobalConfig.preval';
 import { appTheme } from '../theme';
-import siteGlobalConfig from './siteGlobalConfig.preval';
 
 // TODO: add this data into each page (formerly getInitialProps)
 //
@@ -39,7 +40,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <StylesProvider injectFirst>
         <ThemeProvider theme={appTheme}>
           <CssBaseline />
-          <Component {...{ ...pageProps, ...siteGlobalConfig }} />
+          <Component {...{ ...pageProps, ...(siteGlobalConfig as Documents) }} />
         </ThemeProvider>
       </StylesProvider>
     </CacheProvider>

@@ -56,7 +56,7 @@ const MuiNextLink: React.FC<LinkProps> = ({
 
   if (isHome && asPath === pathname) {
     classNames.push('TkhLink--active');
-  } else if (!isHomeLink && asPath.includes(pathname)) {
+  } else if (!isHomeLink && pathname && asPath.includes(pathname)) {
     classNames.push('TkhLink--active');
   }
   const className = classNames.filter((cn) => !!cn).join(' ') || undefined;

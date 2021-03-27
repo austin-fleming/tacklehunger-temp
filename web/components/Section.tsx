@@ -5,28 +5,12 @@ import { PortableText, urlFor } from '../config/sanity';
 import { BlockHeading } from './BlockHeading';
 import { Cta } from './Cta';
 import { serializers } from './serializers';
-
-type SectionProps = {
-  backgroundImage: string;
-  ctaButtons: Record<string, unknown>[];
-  headingAbove: unknown[];
-  headingBelow: unknown[];
-  headingLeft: unknown[];
-  headingRight: unknown[];
-  image: {
-    alt: string;
-    asset: { _ref: string };
-    caption: string;
-  };
-  label: string;
-  mobileBackgroundImage: string;
-  text: unknown[];
-};
+import { CtaButton, Route, Section as SectionProps } from '../types/generated/schema';
 
 const SectionWrapper = styled.div<{ shouldZoomBg: boolean }>`
   position: relative;
   display: flex;
-  width: 100%; /* ${({ shouldZoomBg }) => (shouldZoomBg ? '25%' : '100%')}; */
+  width: 100%;
   height: 100%;
   overflow: hidden;
 `;
@@ -42,14 +26,21 @@ const SectionContents = styled.div<{ backgroundImageExists: boolean }>`
   align-items: center;
   object-fit: contain;
   padding: 50px;
+  justify-content: space-evenly;
+
+  ${({ theme }) =>
+    theme.isMobile &&
+    css`
+      padding: 100px 25px;
+    `}
 `;
 
 const CenterRow = styled.div`
   display: flex;
   flex-direction: ${({ theme }) => (theme.isMobile ? 'column' : 'row')};
-  flex: 1 1;
   justify-content: center;
   align-items: center;
+  max-width: 780px;
 `;
 
 const BackgroundImage = styled.img<{ shouldZoomBg: boolean }>`
@@ -87,9 +78,13 @@ export const Section: React.FC<SectionProps> = ({
 }) => {
   const { isMobile } = useTheme();
 
-  const width = isMobile
-    ? '100%'
-    : `${100 / [headingLeft, image, headingRight].filter((el) => !!el).length}%`;
+  const centerComponentWidth = `${
+    100 / [headingLeft, image, headingRight].filter((el) => !!el).length
+  }%`;
+
+  const mobileHeadingStyle = isMobile
+    ? { fontSize: '22px', lineHeight: 1.2, textAlign: 'left', width: '100%' }
+    : { fontSize: '2.1rem', width: centerComponentWidth };
 
   return (
     <SectionWrapper shouldZoomBg={isMobile && !mobileBackgroundImage}>
@@ -101,47 +96,50 @@ export const Section: React.FC<SectionProps> = ({
         />
       )}
       <SectionContents backgroundImageExists={!!backgroundImage}>
-        {headingAbove && <BlockHeading blocks={headingAbove} style={{ textAlign: 'center' }} />}
+        {headingAbove && (
+          <BlockHeading
+            blocks={headingAbove}
+            style={{ ...mobileHeadingStyle, textAlign: 'center' }}
+          />
+        )}
         <CenterRow>
           {headingLeft && (
             <BlockHeading
               blocks={headingLeft}
-              style={{ textAlign: isMobile ? 'center' : 'left', width }}
+              style={{ ...mobileHeadingStyle, textAlign: isMobile ? 'center' : 'left' }}
             />
           )}
           {image && (
-            <div style={{ width }}>
-              <figure style={{ margin: 0 }}>
-                <img
-                  alt={image.alt}
-                  src={urlFor(image)}
-                  style={{
-                    maxWidth: '100%',
-                  }}
-                />
-                {image.caption && (
-                  <figcaption>
-                    <div>{image.caption}</div>
-                  </figcaption>
-                )}
-              </figure>
+            <div style={{ width: isMobile ? '100%' : centerComponentWidth }}>
+              <img alt={image.alt} src={urlFor(image)} style={{ maxWidth: '100%' }} />
+              {image.caption && <div>{image.caption}</div>}
             </div>
           )}
           {headingRight && (
             <BlockHeading
               blocks={headingRight}
-              style={{ textAlign: isMobile ? 'center' : 'right', width }}
+              style={{ ...mobileHeadingStyle, textAlign: isMobile ? 'left' : 'right' }}
             />
           )}
         </CenterRow>
-        {headingBelow && <BlockHeading blocks={headingBelow} style={{ textAlign: 'center' }} />}
+        {headingBelow && (
+          <BlockHeading
+            blocks={headingBelow}
+            style={{ ...mobileHeadingStyle, maxWidth: '780px', textAlign: 'center' }}
+          />
+        )}
         {text && (
-          <PortableText blocks={text} serializers={serializers} style={{ textAlign: 'center' }} />
+          <div style={{ maxWidth: '820px' }}>
+            <PortableText blocks={text} serializers={serializers} />
+          </div>
         )}
         {ctaButtons && (
-          <div>
+          <div style={isMobile ? { width: '100%' } : {}}>
             {ctaButtons.map((cta) => (
-              <Cta {...cta} key={cta._key} />
+              <Cta
+                {...((cta as unknown) as CtaButton & { route: Omit<Route, '_type'> })}
+                key={cta._key}
+              />
             ))}
           </div>
         )}

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { EmbedHTML } from './EmbedHTML';
-import { Figure } from './Figure';
+// import { Figure } from './Figure';
 
 const Bold: React.FC = ({ children }) => <span style={{ fontWeight: 700 }}>{children}</span>;
 
@@ -17,6 +17,5 @@ export const serializers = {
   marks: { bold: Bold, color: Color, wt500: FontWeight500 },
   types: {
     embedHTML: EmbedHTML,
-    figure: Figure,
   },
 };

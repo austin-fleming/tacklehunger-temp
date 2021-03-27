@@ -117,7 +117,7 @@ const commonRuleOverrides = {
   ],
   // Sort keys in objects etc
   'sort-keys-fix/sort-keys-fix': ['error', 'asc', { caseSensitive: false, natural: true }],
-  /* eslint-enable sort-keys-fix/sort-keys-fix */
+  'no-underscore-dangle': 'off',
 };
 
 module.exports = {

@@ -1,5 +1,6 @@
+/* eslint-disable import/no-default-export */
 import preval from 'next-plugin-preval';
-import { sanity } from '../config/sanity';
+import { sanity } from './sanity';
 
 const getSiteGlobalConfig = async () => {
   const [config] = await sanity.getAll('site-config');

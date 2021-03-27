@@ -6,7 +6,7 @@
     "node": ">=0.14"
   },
   "scripts": {
-    "build": "next build && next export && ts-node exportSitemap",
+    "build": "next build && next export",
     "clean": "rm -rf .next out dist workers-site/worker workers-site/dist",
     "dev": "next",
     "start": "next start",
