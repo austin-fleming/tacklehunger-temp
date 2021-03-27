@@ -33,7 +33,7 @@ export default {
       description: 'Best choice is to use an SVG where the color are set with currentColor',
       fields: [
         {
-          description: 'Important for SEO and accessiblity.',
+          description: 'Important for SEO and accessibility.',
           name: 'alt',
           options: {
             isHighlighted: true,

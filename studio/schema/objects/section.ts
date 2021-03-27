@@ -32,11 +32,21 @@ export default {
       type: 'customPortableText',
     },
     {
+      description: 'Optional background image',
       name: 'backgroundImage',
       options: {
         hotspot: true,
       },
       title: 'Background image',
+      type: 'image',
+    },
+    {
+      description: 'Optional alternative background image to display on mobile',
+      name: 'mobileBackgroundImage',
+      options: {
+        hotspot: true,
+      },
+      title: 'Mobile Background image',
       type: 'image',
     },
     {

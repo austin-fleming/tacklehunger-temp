@@ -12,7 +12,6 @@ export const RenderSections: React.FC<{ sections: Sections }> = ({ sections }) =
     console.error('Missing section');
     return <div>Missing sections</div>;
   }
-
   return (
     <Fragment>
       {sections.map((section) => (

@@ -1,7 +1,10 @@
 import React from 'react';
-import { Container, Grid } from '@material-ui/core';
+import { css, useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
 import { PortableText, urlFor } from '../config/sanity';
+import { BlockHeading } from './BlockHeading';
 import { Cta } from './Cta';
+import { serializers } from './serializers';
 
 type SectionProps = {
   backgroundImage: string;
@@ -15,8 +18,60 @@ type SectionProps = {
     asset: { _ref: string };
     caption: string;
   };
+  label: string;
+  mobileBackgroundImage: string;
   text: unknown[];
 };
+
+const SectionWrapper = styled.div<{ shouldZoomBg: boolean }>`
+  position: relative;
+  display: flex;
+  width: 100%; /* ${({ shouldZoomBg }) => (shouldZoomBg ? '25%' : '100%')}; */
+  height: 100%;
+  overflow: hidden;
+`;
+
+const SectionContents = styled.div<{ backgroundImageExists: boolean }>`
+  ${({ backgroundImageExists }) => backgroundImageExists && 'position: absolute;'}
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+  padding: 50px;
+`;
+
+const CenterRow = styled.div`
+  display: flex;
+  flex-direction: ${({ theme }) => (theme.isMobile ? 'column' : 'row')};
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BackgroundImage = styled.img<{ shouldZoomBg: boolean }>`
+  ${({ theme }) =>
+    css`
+      width: ${theme.breakpoints.values.lg}px;
+    `}
+
+  ${({ theme }) =>
+    theme.isMobile &&
+    css`
+      width: 100%;
+    `}
+
+
+  ${({ shouldZoomBg }) =>
+    shouldZoomBg &&
+    css`
+      width: 400%;
+      margin-left: -100%;
+    `}
+`;
 
 export const Section: React.FC<SectionProps> = ({
   backgroundImage,
@@ -26,78 +81,71 @@ export const Section: React.FC<SectionProps> = ({
   headingLeft,
   headingRight,
   image,
+  label,
+  mobileBackgroundImage,
   text,
 }) => {
-  console.log(image);
-  const backgroundImageUrl = urlFor(backgroundImage);
+  const { isMobile } = useTheme();
+
+  const width = isMobile
+    ? '100%'
+    : `${100 / [headingLeft, image, headingRight].filter((el) => !!el).length}%`;
+
   return (
-    <Container
-      maxWidth='xl'
-      style={
-        backgroundImage
-          ? {
-              backgroundImage: `url("${backgroundImageUrl}")`,
-              // 'backgroundSize': 'contain',
-            }
-          : {}
-      }>
-      <img alt='' src={backgroundImageUrl} style={{ visibility: 'hidden' }} />
-      <Grid container xs={12}>
-        {headingAbove && (
-          <Grid item>
-            <PortableText blocks={headingAbove} />
-          </Grid>
-        )}
-        <Grid item xs={6}>
+    <SectionWrapper shouldZoomBg={isMobile && !mobileBackgroundImage}>
+      {backgroundImage && (
+        <BackgroundImage
+          alt={`${label}-background-image`}
+          shouldZoomBg={isMobile && !mobileBackgroundImage}
+          src={urlFor(isMobile && mobileBackgroundImage ? mobileBackgroundImage : backgroundImage)}
+        />
+      )}
+      <SectionContents backgroundImageExists={!!backgroundImage}>
+        {headingAbove && <BlockHeading blocks={headingAbove} style={{ textAlign: 'center' }} />}
+        <CenterRow>
+          {headingLeft && (
+            <BlockHeading
+              blocks={headingLeft}
+              style={{ textAlign: isMobile ? 'center' : 'left', width }}
+            />
+          )}
           {image && (
-            <Grid item xs>
-              <figure>
+            <div style={{ width }}>
+              <figure style={{ margin: 0 }}>
                 <img
                   alt={image.alt}
                   src={urlFor(image)}
                   style={{
-                    display: 'block',
-                    width: '100%',
+                    maxWidth: '100%',
                   }}
                 />
                 {image.caption && (
                   <figcaption>
-                    <div>
-                      <div>
-                        <div>{image.caption}</div>
-                      </div>
-                    </div>
+                    <div>{image.caption}</div>
                   </figcaption>
                 )}
               </figure>
-            </Grid>
+            </div>
           )}
           {headingRight && (
-            <Grid item xs>
-              <PortableText blocks={headingRight} />
-            </Grid>
+            <BlockHeading
+              blocks={headingRight}
+              style={{ textAlign: isMobile ? 'center' : 'right', width }}
+            />
           )}
-        </Grid>
-        {headingBelow && (
-          <Grid item>
-            <PortableText blocks={headingBelow} />
-          </Grid>
+        </CenterRow>
+        {headingBelow && <BlockHeading blocks={headingBelow} style={{ textAlign: 'center' }} />}
+        {text && (
+          <PortableText blocks={text} serializers={serializers} style={{ textAlign: 'center' }} />
         )}
-        {headingLeft && (
-          <Grid item>
-            <PortableText blocks={headingLeft} />
-          </Grid>
-        )}
-        {text && <PortableText blocks={text} />}
         {ctaButtons && (
-          <Grid item>
+          <div>
             {ctaButtons.map((cta) => (
-              // eslint-disable-next-line no-underscore-dangle
               <Cta {...cta} key={cta._key} />
             ))}
-          </Grid>
+          </div>
         )}
-      </Grid>
-    </Container>
+      </SectionContents>
+    </SectionWrapper>
   );
 };

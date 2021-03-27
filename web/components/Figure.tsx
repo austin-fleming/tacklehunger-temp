@@ -1,5 +1,4 @@
 import React from 'react';
-import { urlFor } from '../config/sanity';
 
 type FigureProps = {
   node: {
@@ -12,7 +11,7 @@ type FigureProps = {
 export const Figure: React.FC<FigureProps> = ({ node: { alt, caption, asset } }) =>
   asset ? (
     <figure>
-      <img alt={alt} src={urlFor(asset)} />
+      <img alt={alt} src={asset} />
       {caption && (
         <figcaption>
           <div>
