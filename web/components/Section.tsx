@@ -102,6 +102,16 @@ export const Section: React.FC<SectionProps> = ({
     ? { fontSize: '22px', lineHeight: 1.2, textAlign: 'left', width: '100%' }
     : { fontSize: '2.1rem', width: centerComponentWidth };
 
+  const sectionRef = React.useRef<HTMLImageElement>();
+  const [centerImageHeight, setImageHeight] = React.useState('auto');
+
+  React.useEffect(() => {
+    if (sectionRef?.current) {
+      const { height } = sectionRef?.current;
+      setImageHeight(`${height}px`);
+    }
+  }, [sectionRef]);
+
   return (
     <SectionWrapper shouldZoomBg={isMobile && !mobileBackgroundImage}>
       {backgroundImage && (
@@ -111,7 +121,7 @@ export const Section: React.FC<SectionProps> = ({
           src={urlFor(isMobile && mobileBackgroundImage ? mobileBackgroundImage : backgroundImage)}
         />
       )}
-      <SectionContents backgroundImageExists={!!backgroundImage}>
+      <SectionContents ref={sectionRef} backgroundImageExists={!!backgroundImage}>
         {headingAbove && (
           <BlockHeading
             blocks={headingAbove}
@@ -127,20 +137,19 @@ export const Section: React.FC<SectionProps> = ({
           )}
           {image && (
             <div style={{ width: isMobile ? '100%' : centerComponentWidth }}>
-              <figure style={{ margin: 0 }}>
-                <img
-                  alt={image.alt}
-                  src={urlFor(image)}
-                  style={{
-                    maxWidth: '100%',
-                  }}
-                />
-                {image.caption && (
-                  <figcaption>
-                    <div>{image.caption}</div>
-                  </figcaption>
-                )}
-              </figure>
+              <img
+                alt={image.alt}
+                src={urlFor(image)}
+                style={{
+                  height: centerImageHeight,
+                  maxWidth: '100%',
+                }}
+              />
+              {image.caption && (
+                <figcaption>
+                  <div>{image.caption}</div>
+                </figcaption>
+              )}
             </div>
           )}
           {headingRight && (
