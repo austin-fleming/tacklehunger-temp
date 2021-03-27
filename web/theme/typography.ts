@@ -2,7 +2,7 @@ import { ThemeOptions } from '@material-ui/core';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 export const typographyConstants = {
-  fontFamily: 'RedHatDisplay, sans-serif',
+  fontFamily: "'Red Hat Display', sans-serif",
   letterSpacing: {
     lg: 0.05,
     md: 0.015,
