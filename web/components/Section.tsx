@@ -42,6 +42,7 @@ const SectionContents = styled.div<{ backgroundImageExists: boolean }>`
   align-items: center;
   object-fit: contain;
   padding: 50px;
+  justify-content: space-evenly;
 
   ${({ theme }) =>
     theme.isMobile &&
@@ -53,9 +54,9 @@ const SectionContents = styled.div<{ backgroundImageExists: boolean }>`
 const CenterRow = styled.div`
   display: flex;
   flex-direction: ${({ theme }) => (theme.isMobile ? 'column' : 'row')};
-  flex: 1 1;
   justify-content: center;
   align-items: center;
+  max-width: 780px;
 `;
 
 const BackgroundImage = styled.img<{ shouldZoomBg: boolean }>`
@@ -99,7 +100,7 @@ export const Section: React.FC<SectionProps> = ({
 
   const mobileHeadingStyle = isMobile
     ? { fontSize: '22px', lineHeight: 1.2, textAlign: 'left', width: '100%' }
-    : { width: centerComponentWidth };
+    : { fontSize: '2.1rem', width: centerComponentWidth };
 
   return (
     <SectionWrapper shouldZoomBg={isMobile && !mobileBackgroundImage}>
