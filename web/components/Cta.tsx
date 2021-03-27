@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { PrimaryButton } from 'web/components/Buttons';
+import { PrimaryButton } from './Buttons';
 import { Link } from './Link';
 
 const CtaButton = styled(PrimaryButton)<{ ctaColor?: string }>`
