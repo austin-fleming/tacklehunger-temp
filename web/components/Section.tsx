@@ -42,6 +42,12 @@ const SectionContents = styled.div<{ backgroundImageExists: boolean }>`
   align-items: center;
   object-fit: contain;
   padding: 50px;
+
+  ${({ theme }) =>
+    theme.isMobile &&
+    css`
+      padding: 100px 25px;
+    `}
 `;
 
 const CenterRow = styled.div`
@@ -87,9 +93,13 @@ export const Section: React.FC<SectionProps> = ({
 }) => {
   const { isMobile } = useTheme();
 
-  const width = isMobile
-    ? '100%'
-    : `${100 / [headingLeft, image, headingRight].filter((el) => !!el).length}%`;
+  const centerComponentWidth = `${
+    100 / [headingLeft, image, headingRight].filter((el) => !!el).length
+  }%`;
+
+  const mobileHeadingStyle = isMobile
+    ? { fontSize: '22px', lineHeight: 1.2, textAlign: 'left', width: '100%' }
+    : { width: centerComponentWidth };
 
   return (
     <SectionWrapper shouldZoomBg={isMobile && !mobileBackgroundImage}>
@@ -101,16 +111,21 @@ export const Section: React.FC<SectionProps> = ({
         />
       )}
       <SectionContents backgroundImageExists={!!backgroundImage}>
-        {headingAbove && <BlockHeading blocks={headingAbove} style={{ textAlign: 'center' }} />}
+        {headingAbove && (
+          <BlockHeading
+            blocks={headingAbove}
+            style={{ ...mobileHeadingStyle, textAlign: 'center' }}
+          />
+        )}
         <CenterRow>
           {headingLeft && (
             <BlockHeading
               blocks={headingLeft}
-              style={{ textAlign: isMobile ? 'center' : 'left', width }}
+              style={{ ...mobileHeadingStyle, textAlign: isMobile ? 'center' : 'left' }}
             />
           )}
           {image && (
-            <div style={{ width }}>
+            <div style={{ width: isMobile ? '100%' : centerComponentWidth }}>
               <figure style={{ margin: 0 }}>
                 <img
                   alt={image.alt}
@@ -130,16 +145,21 @@ export const Section: React.FC<SectionProps> = ({
           {headingRight && (
             <BlockHeading
               blocks={headingRight}
-              style={{ textAlign: isMobile ? 'center' : 'right', width }}
+              style={{ ...mobileHeadingStyle, textAlign: isMobile ? 'left' : 'right' }}
             />
           )}
         </CenterRow>
-        {headingBelow && <BlockHeading blocks={headingBelow} style={{ textAlign: 'center' }} />}
+        {headingBelow && (
+          <BlockHeading
+            blocks={headingBelow}
+            style={{ ...mobileHeadingStyle, textAlign: 'center' }}
+          />
+        )}
         {text && (
           <PortableText blocks={text} serializers={serializers} style={{ textAlign: 'center' }} />
         )}
         {ctaButtons && (
-          <div>
+          <div style={isMobile ? { width: '100%' } : {}}>
             {ctaButtons.map((cta) => (
               <Cta {...cta} key={cta._key} />
             ))}
