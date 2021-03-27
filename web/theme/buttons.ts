@@ -2,7 +2,7 @@ import { ThemeOptions } from '@material-ui/core';
 import { defaultMuiTheme } from './default';
 import { textlinkStyles } from './typography';
 
-const padding = defaultMuiTheme.spacing(1, 4);
+const padding = defaultMuiTheme.spacing(3, 4);
 
 export const componentsButtons: ThemeOptions['components'] = {
   MuiButton: {
@@ -16,7 +16,9 @@ export const componentsButtons: ThemeOptions['components'] = {
         borderColor: undefined,
       },
       contained: {
+        fontSize: '25px',
         padding,
+        textAlign: 'center',
       },
       outlined: {
         padding,

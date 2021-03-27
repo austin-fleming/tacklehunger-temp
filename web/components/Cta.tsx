@@ -1,15 +1,6 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { PrimaryButton } from './Buttons';
 import { Link } from './Link';
-
-const CtaButton = styled(PrimaryButton)<{ ctaColor?: string }>`
-  height: 70px;
-  border-radius: 10px;
-  font-size: 25px;
-
-  ${({ ctaColor }) => ctaColor && `background: ${ctaColor};`}
-`;
 
 type CtaProps = {
   buttonColor?: { hex?: string };
@@ -26,10 +17,10 @@ export const Cta: React.FC<CtaProps> = ({ buttonColor, text, route, link }) =>
         pathname: '/LandingPage',
         query: { slug: route.slug.current },
       }}>
-      <CtaButton ctaColor={buttonColor?.hex}>{text}</CtaButton>
+      <PrimaryButton style={{ background: buttonColor?.hex || 'inherit' }}>{text}</PrimaryButton>
     </Link>
   ) : (
-    <CtaButton ctaColor={buttonColor?.hex} href={link}>
+    <PrimaryButton href={link} style={{ background: buttonColor?.hex || 'inherit' }}>
       {text}
-    </CtaButton>
+    </PrimaryButton>
   );

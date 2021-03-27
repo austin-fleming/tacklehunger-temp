@@ -46,3 +46,4 @@ jspm_packages
 # Static
 out
 dist
+**/generated/**
