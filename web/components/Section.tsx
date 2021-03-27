@@ -26,7 +26,7 @@ type SectionProps = {
 const SectionWrapper = styled.div<{ shouldZoomBg: boolean }>`
   position: relative;
   display: flex;
-  width: 100%; /* ${({ shouldZoomBg }) => (shouldZoomBg ? '25%' : '100%')}; */
+  width: 100%;
   height: 100%;
   overflow: hidden;
 `;
@@ -102,16 +102,6 @@ export const Section: React.FC<SectionProps> = ({
     ? { fontSize: '22px', lineHeight: 1.2, textAlign: 'left', width: '100%' }
     : { fontSize: '2.1rem', width: centerComponentWidth };
 
-  const sectionRef = React.useRef<HTMLImageElement>();
-  const [centerImageHeight, setImageHeight] = React.useState('auto');
-
-  React.useEffect(() => {
-    if (sectionRef?.current) {
-      const { height } = sectionRef?.current;
-      setImageHeight(`${height}px`);
-    }
-  }, [sectionRef]);
-
   return (
     <SectionWrapper shouldZoomBg={isMobile && !mobileBackgroundImage}>
       {backgroundImage && (
@@ -121,7 +111,7 @@ export const Section: React.FC<SectionProps> = ({
           src={urlFor(isMobile && mobileBackgroundImage ? mobileBackgroundImage : backgroundImage)}
         />
       )}
-      <SectionContents ref={sectionRef} backgroundImageExists={!!backgroundImage}>
+      <SectionContents backgroundImageExists={!!backgroundImage}>
         {headingAbove && (
           <BlockHeading
             blocks={headingAbove}
@@ -137,19 +127,8 @@ export const Section: React.FC<SectionProps> = ({
           )}
           {image && (
             <div style={{ width: isMobile ? '100%' : centerComponentWidth }}>
-              <img
-                alt={image.alt}
-                src={urlFor(image)}
-                style={{
-                  height: centerImageHeight,
-                  maxWidth: '100%',
-                }}
-              />
-              {image.caption && (
-                <figcaption>
-                  <div>{image.caption}</div>
-                </figcaption>
-              )}
+              <img alt={image.alt} src={urlFor(image)} style={{ maxWidth: '100%' }} />
+              {image.caption && <div>{image.caption}</div>}
             </div>
           )}
           {headingRight && (
@@ -162,11 +141,13 @@ export const Section: React.FC<SectionProps> = ({
         {headingBelow && (
           <BlockHeading
             blocks={headingBelow}
-            style={{ ...mobileHeadingStyle, textAlign: 'center' }}
+            style={{ ...mobileHeadingStyle, maxWidth: '780px', textAlign: 'center' }}
           />
         )}
         {text && (
-          <PortableText blocks={text} serializers={serializers} style={{ textAlign: 'center' }} />
+          <div style={{ maxWidth: '820px' }}>
+            <PortableText blocks={text} serializers={serializers} />
+          </div>
         )}
         {ctaButtons && (
           <div style={isMobile ? { width: '100%' } : {}}>
