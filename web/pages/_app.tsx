@@ -2,11 +2,11 @@ import React from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, StylesProvider, ThemeProvider, useMediaQuery } from '@material-ui/core';
+import siteGlobalConfig from 'config/siteGlobalConfig.preval';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Documents } from 'web/types/generated/schema';
-import siteGlobalConfig from '../config/siteGlobalConfig.preval';
-import { appTheme } from '../theme';
+import { Documents } from 'types/generated/schema';
+import { appTheme } from 'theme';
 
 // TODO: add this data into each page (formerly getInitialProps)
 //

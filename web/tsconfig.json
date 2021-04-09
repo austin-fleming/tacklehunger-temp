@@ -1,8 +1,8 @@
 {
-  "extends": "../tsconfig.json",
-  "include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"],
-  "exclude": ["**/__deprecatedSections__/**"],
   "compilerOptions": {
-    "module": "commonjs"
-  }
+    "baseUrl": "."
+  },
+  "exclude": ["node_modules", "**/__deprecatedSections__/**"],
+  "extends": "../tsconfig.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

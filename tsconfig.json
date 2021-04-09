@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "ESNext"],
+    "module": "ESNext",
     "moduleResolution": "node",
     "noEmit": true,
     "resolveJsonModule": true,
@@ -15,6 +14,6 @@
     "strict": true,
     "target": "ESNext"
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "**/__deprecatedSections__/**"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
