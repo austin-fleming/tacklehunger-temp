@@ -1,5 +1,4 @@
 import React from 'react';
-import { NextPage } from 'next';
 import { groq } from 'next-sanity';
 import { useRouter } from 'next/router';
 import { IndexPage } from '..';
@@ -11,18 +10,18 @@ const pageQuery = groq`{
   "content": *[_type == "page" && slug.current == $slug][0].content
 }`;
 
-const PreviewPage: NextPage<SiteConfig & Page> = ({ config, content }) => {
+const PreviewPage: React.FC<SiteConfig & Page> = (props) => {
   const { query } = useRouter();
 
   const { slug } = query;
 
   const { data } = usePreviewSubscription(pageQuery, {
     enabled: !!slug,
-    initialData: { config, content },
+    initialData: props,
     params: { slug },
   });
 
-  return <IndexPage config={data.config} content={data.content} />;
+  return <IndexPage {...data} />;
 };
 
 export default PreviewPage;
