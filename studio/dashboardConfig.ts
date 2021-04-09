@@ -13,7 +13,7 @@ export default {
           {
             category: 'apps',
             title: 'Frontend',
-            value: 'https://sanity-nextjs-landing-pages-web-jxhmdmdv.netlify.app',
+            value: 'https://web.sboc.us',
           },
         ],
       },
