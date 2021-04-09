@@ -2,10 +2,10 @@ import React from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PortableText, urlFor } from '../config/sanity';
+import { CtaButton, Page, Section as SectionProps } from '../types/generated/schema';
 import { BlockHeading } from './BlockHeading';
 import { Cta } from './Cta';
 import { serializers } from './serializers';
-import { CtaButton, Route, Section as SectionProps } from '../types/generated/schema';
 
 const SectionWrapper = styled.div<{ shouldZoomBg: boolean }>`
   position: relative;
@@ -137,7 +137,7 @@ export const Section: React.FC<SectionProps> = ({
           <div style={isMobile ? { width: '100%' } : {}}>
             {ctaButtons.map((cta) => (
               <Cta
-                {...((cta as unknown) as CtaButton & { route: Omit<Route, '_type'> })}
+                {...((cta as unknown) as CtaButton & { page: Omit<Page, '_type'> })}
                 key={cta._key}
               />
             ))}

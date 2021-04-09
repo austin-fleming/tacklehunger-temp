@@ -4,5 +4,4 @@
 export default {
   // exportPathMap,
   reactStrictMode: true,
-  target: 'serverless',
 };

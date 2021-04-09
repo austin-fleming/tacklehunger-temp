@@ -51,7 +51,7 @@ export default {
       name: 'mainNavigation',
       of: [
         {
-          to: [{ type: 'route' }],
+          to: [{ type: 'page' }],
           type: 'reference',
         },
       ],
@@ -67,7 +67,7 @@ export default {
       name: 'footerNavigation',
       of: [
         {
-          to: [{ type: 'route' }],
+          to: [{ type: 'page' }],
           type: 'reference',
         },
       ],

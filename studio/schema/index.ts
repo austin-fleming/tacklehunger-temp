@@ -1,7 +1,6 @@
 import schemaTypes from 'all:part:@sanity/base/schema-type'; // Plugins schema types
 import createSchema from 'part:@sanity/base/schema-creator';
 import page from './documents/page';
-import route from './documents/route';
 import siteConfig from './documents/siteConfig';
 import ctaButton from './objects/ctaButton';
 import customPortableText from './objects/customPortableText';
@@ -16,6 +15,7 @@ import simplePortableText from './objects/simplePortableText';
 //   import hero from './objects/hero';
 //   import imageSection from './objects/imageSection';
 //   import textSection from './objects/textSection';
+//   import route from './documents/route';
 
 export default createSchema({
   name: 'default',
@@ -29,7 +29,6 @@ export default createSchema({
     link,
     page,
     portableText,
-    route,
     simplePortableText,
     siteConfig,
     section,

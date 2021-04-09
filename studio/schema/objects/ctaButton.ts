@@ -13,9 +13,9 @@ export default {
     {
       description: 'Use this to link between pages on the website',
       fieldset: 'link',
-      name: 'route',
+      name: 'page',
       title: 'Internal link',
-      to: [{ type: 'route' }],
+      to: [{ type: 'page' }],
       type: 'reference',
     },
     {
@@ -33,22 +33,22 @@ export default {
   ],
   name: 'ctaButton',
   preview: {
-    prepare({ title, routeTitle = '', slug, link }) {
+    prepare({ title, pageTitle = '', slug, link }) {
       const subtitleExtra = slug ? `Slug:/${slug}/` : link ? `External link: ${link}` : 'Not set';
       return {
-        subtitle: `${routeTitle} ${subtitleExtra}`,
+        subtitle: `${pageTitle} ${subtitleExtra}`,
         title: `${title}`,
       };
     },
     select: {
       link: 'link',
-      routeTitle: 'route.title',
-      slug: 'route.slug.current',
+      pageTitle: 'page.title',
+      slug: 'page.slug.current',
       title: 'title',
     },
   },
   title: 'Call to action Button',
   type: 'object',
   validation: (Rule) =>
-    Rule.custom((fields = {}) => !fields.route || !fields.link || 'Only one link type is allowed'),
+    Rule.custom((fields = {}) => !fields.page || !fields.link || 'Only one link type is allowed'),
 };

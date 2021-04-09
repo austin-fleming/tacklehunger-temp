@@ -1,26 +1,44 @@
 export default {
   fields: [
     {
+      description: 'Internal name for the page',
       name: 'title',
       title: 'Title',
       type: 'string',
     },
     {
+      description: 'Route on the website where this page lives, i.e. sboc.us/<slug>',
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+    },
+    {
       name: 'content',
       of: [{ type: 'section' }],
-      // { type: 'hero' },
-      // { type: 'imageSection' },
-      // { type: 'textSection' }]
       title: 'Page sections',
       type: 'array',
     },
     {
-      description: 'Select pages for the sub-menu. Leave blank for no sub-menu.',
+      description:
+        'Enter the labels of sections to be in the sub-menu. Leave blank for no sub-menu.',
       name: 'subMenu',
       of: [
         {
-          to: [{ type: 'section' }],
-          type: 'reference',
+          fields: [
+            {
+              description: 'the label that links to it',
+              name: 'label',
+              title: 'Section Name',
+              type: 'string',
+            },
+            {
+              description: "Text for it's button on the sub-menu",
+              name: 'subMenuButtonText',
+              title: 'Sub-Menu Button Text',
+              type: 'string',
+            },
+          ],
+          type: 'object',
         },
       ],
       title: 'Sub Menu',
@@ -44,6 +62,20 @@ export default {
       title: 'Open Graph Image',
       type: 'image',
     },
+    {
+      description: 'For search engines. Will be added to /sitemap.xml',
+      fieldset: 'metadata',
+      name: 'includeInSitemap',
+      title: 'Include page in sitemap',
+      type: 'boolean',
+    },
+    {
+      description: 'Hide this route for search engines',
+      fieldset: 'metadata',
+      name: 'disallowRobots',
+      title: 'Disallow in robots.txt',
+      type: 'boolean',
+    },
   ],
   fieldsets: [
     {
@@ -53,8 +85,14 @@ export default {
   ],
   name: 'page',
   preview: {
+    prepare: ({ media, slug, title }) => ({
+      media,
+      subtitle: slug === '/' ? '/' : `/${slug}`,
+      title,
+    }),
     select: {
       media: 'openGraphImage',
+      slug: 'slug.current',
       title: 'title',
     },
   },
