@@ -56,6 +56,7 @@ export default {
       ],
       title: 'Main navigation',
       type: 'array',
+      // TODO: Add additional validation for over-all char count to catch potential overflows for 5 items.
       validation: (Rule) => [
         Rule.max(5).warning('Are you sure you want more than 5 items?'),
         Rule.unique().error('You have duplicate menu items'),
