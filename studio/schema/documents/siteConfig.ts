@@ -62,6 +62,38 @@ export default {
       ],
     },
     {
+      description: 'Notification that appears at the top of pages. Useful for promoting events or pages.',
+      fields: [
+        {
+          description: 'Turn banner on/off.',
+          name: 'isActive',
+          title: 'Activate',
+          type: 'boolean'
+        },
+        // TODO: Consider changing to <'internalLink'> or <'slug' w/ exists validation> once all schemas are present.
+        {
+          description: 'Where the visitor should be directed when they click on the banner.',
+          name: 'destinationUrl',
+          title: 'Destination URL',
+          type: 'url',
+        },
+        // TODO: Add 'max' validation once best length can be determined.
+        {
+          description: 'A brief message that will draw the visitor\'s attention.',
+          name: 'message',
+          title: 'Message',
+          type: 'text'
+        }
+      ],
+      name: 'notificationBanner',
+      title: 'Notification Banner',
+      type: 'object',
+      validation: (Rule) => [
+        Rule.custom((fields) => (fields && fields.isActive && !fields.message ? '"Message" must be set if banner is active.' : true)),
+        Rule.custom((fields) => (fields && fields.isActive && !fields.destinationUrl ? 'Consider adding "Destination URL" to make the banner clickable.' : true)).warning()
+      ]
+    },
+    {
       fieldset: 'footer',
       name: 'footerNavigation',
       of: [
