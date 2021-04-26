@@ -3,6 +3,7 @@ import bcp47 from 'bcp47';
 export default {
   // https://www.sanity.io/docs/experimental/ui-affordances-for-actions
   // __experimental_actions: [/* create, delete, */ 'update', 'publish'],
+  __experimental_actions: ['update', 'publish'],
   fields: [
     {
       name: 'title',
